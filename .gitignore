@@ -1,0 +1,6 @@
+/node_modules
+/public
+.env
+.phpunit.result.cache
+npm-debug.log
+package-lock.json
