@@ -1,13 +1,19 @@
-// const path = require('path')
-
-const custom = require('./webpack.config.js')
+const path = require('path')
 
 module.exports = {
-    stories: ['../src/**/*.stories.[tj]s'],
-    webpackFinal: (config) => {
-        return {
-            ...config,
-            ...custom,
-        }
+    webpackFinal: async (config, { configType }) => {
+        config.module.rules.push({
+            test: /\.pcss/,
+            use: ['style-loader', 'css-loader', 'postcss-loader'],
+            include: path.resolve(__dirname, '../')
+        })
+
+        return config
     },
+
+    addons: [
+        '@storybook/addon-actions/register',
+    ],
+
+    stories: ['../src/**/*.stories.js'],
 }

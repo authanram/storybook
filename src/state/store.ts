@@ -5,12 +5,11 @@ import VuexORM from '@vuex-orm/core'
 import VuexORMAxios from '@vuex-orm/plugin-axios'
 import VuexPersist from 'vuex-persist'
 import * as models from '@/state/models'
-import modules from '@/state/modules'
 
 Vue.use(Vuex)
 
 const database = new VuexORM.Database()
-Object.values(models).forEach((model) => database.register(model, modules[model.entity]))
+Object.values(models).forEach((model: any) => database.register(model))
 
 VuexORM.use(VuexORMAxios, {
     axios,
@@ -26,7 +25,6 @@ const vuexPersist = new VuexPersist({
 
 const store = new Vuex.Store({
     actions: {},
-    modules: { ...modules },
     mutations: {},
     plugins: [
         VuexORM.install(database),
