@@ -1,6 +1,9 @@
 // import Vue from 'vue'
 
-import '../src/style/tailwind.css'
+import '@storybook/addon-console'
+import '@storybook/addon-knobs'
+
+import '../src/styles/tailwind.css'
 
 import { configure } from '@storybook/vue'
 
