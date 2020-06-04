@@ -52,6 +52,14 @@ export const base = () => ({
 
 })
 
+export const withoutProperties = () => ({
+    template: `
+        <Button>
+            Label
+        </Button>
+    `
+})
+
 base.story = {
     parameters: {
         jest: ['button.test.js'],

@@ -6,14 +6,14 @@
         <a
             :href="hrefAttribute"
             :class="classAttribute"
-            class="rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 md:text-lg xl:text-base text-white font-semibold leading-tight"
+            class="rounded px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 md:text-lg xl:text-base text-white font-semibold leading-tight"
         >
             <slot />
         </a>
     </button>
 </template>
 
-<script>
+<script lang="ts">
     export default {
         props: {
             color: {
@@ -39,7 +39,7 @@
         },
 
         computed: {
-            classAttribute () {
+            classAttribute (): string[] {
                 return [
                     this.classAttributeBackground,
                     this.classAttributeForeground,

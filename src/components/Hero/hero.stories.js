@@ -17,7 +17,7 @@ export default {
     decorators: [withKnobs],
 }
 
-export const HeroStory = () => ({
+export const SimpleCentered = () => ({
     components: { Hero },
 
     decorators: [withKnobs],

@@ -1,7 +1,11 @@
+/build
+/coverage
+/htdocs
 /node_modules
 /public
+
 .env
+.jest-test-results.json
 .phpunit.result.cache
 npm-debug.log
 package-lock.json
-.jest-test-results.json
