@@ -4,3 +4,4 @@
 .phpunit.result.cache
 npm-debug.log
 package-lock.json
+.jest-test-results.json

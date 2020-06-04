@@ -1,54 +1,59 @@
 import Vue from 'vue'
 
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs'
+import { withTests } from '@storybook/addon-jest'
+import results from '../../../.jest-test-results.json'
+
+const Button = () => import('./Button.vue')
+
+Vue.component('Button', Button)
+
 export default {
     title: 'Button',
-    component: MyButton,
-    parameters: { docs: { page: null } },
-    decorators: [withKnobs],
+    component: Button,
+    decorators: [
+        withKnobs,
+        withTests({ results }),
+    ],
 }
 
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs'
+export const base = () => ({
 
-import MyButton from './Button.vue'
-
-Vue.component('MyButton', MyButton)
-
-export const withText = () => '<div class="m-10"><my-button>Foobar</my-button></div>'
-
-export const withEmoji = () => ({
-    template: '<div class="m-10"><my-button>😀 😎 👍 💯</my-button></div>',
-})
-
-export const exampleWithKnobs = () => ({
-    components: { MyButton },
-
-    decorators: [withKnobs],
+    components: { Button },
 
     props: {
-        isDisabled: {
+        disabled: {
             default: boolean('Disabled', false),
         },
-        color: {
-            default: select('Colors', ['teal', 'red', 'green', 'blue', 'pink', 'orange', 'gray'], 'teal'),
+        outline: {
+            default: boolean('Outline', false),
         },
         shadow: {
-            default: select('Shadow', ['shadow', 'shadow-md', 'shadow-lg', 'shadow-xl', 'shadow-2xl'], 'shadow-md'),
+            default: boolean('Shadow', false),
         },
-        text: {
-            default: text('Text', 'Foobar'),
+        color: {
+            default: select('Color', ['blue', 'gray', 'green', 'indigo', 'orange', 'pink', 'red', 'teal', 'white'], 'indigo'),
+        },
+        label: {
+            default: text('Label', 'Label'),
         }
     },
 
     template: `
-        <div class="m-10">
-            <my-button
-                :class="{ 'opacity-50' : isDisabled }"
-                :color="color"
-                :isDisabled="isDisabled"
-                :shadow="shadow"
-            >
-                {{ text }}
-            </my-button>
-        </div>
+        <Button
+            :color="color"
+            :disabled="disabled"
+            :outline="outline"
+            :shadow="shadow"
+        >
+            {{ label }}
+        </Button>
     `
+
 })
+
+base.story = {
+    parameters: {
+        jest: ['button.test.js'],
+    },
+}
